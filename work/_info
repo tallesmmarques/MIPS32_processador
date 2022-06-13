@@ -4,7 +4,7 @@ K3
 cModel Technology
 dD:\Program Files\altera
 Eregister_file
-Z0 w1655158229
+Z0 w1655159168
 Z1 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
 Z2 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
 Z3 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
@@ -18,7 +18,7 @@ VT_B9Tn8E56PNUzJ3PM[@g2
 Z7 OV;C;10.1d;51
 32
 !i10b 1
-Z8 !s108 1655158243.110000
+Z8 !s108 1655159276.165000
 Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/TallesArquivos/Projects/MIPS32_processador/datapath_components/register_file.vhd|
 Z10 !s107 D:/TallesArquivos/Projects/MIPS32_processador/datapath_components/register_file.vhd|
 Z11 o-work work -2002 -explicit -O0
