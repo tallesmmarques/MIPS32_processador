@@ -12,15 +12,15 @@ entity register_file is
         WD3 : in std_logic_vector(31 downto 0);
 
         RD1 : out std_logic_vector(31 downto 0);
-        RD2 : out std_logic_vector(31 downto 0);
+        RD2 : out std_logic_vector(31 downto 0)
     );
 end register_file;
 
 architecture rtl of register_file is
     -- Defining the array of registers and setting all of them to 0
-    type file is array (0 to 31) of std_logic_vector(31 downto 0);
-    signal registers : file := (
-        others => (others => '0');
+    type file_type is array (0 to 31) of std_logic_vector(31 downto 0);
+    signal registers : file_type := (
+        others => (others => '0')
     );
 
 begin
