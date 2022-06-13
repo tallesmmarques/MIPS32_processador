@@ -3,40 +3,118 @@ K3
 13
 cModel Technology
 dD:\Program Files\altera
-Eregister_file
-Z0 w1655159168
-Z1 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
-Z2 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
-Z3 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Pconstantes
+Z0 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z1 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z2 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+Z3 w1655160670
 Z4 dD:\TallesArquivos\Projects\MIPS32_processador
-Z5 8D:/TallesArquivos/Projects/MIPS32_processador/datapath_components/register_file.vhd
-Z6 FD:/TallesArquivos/Projects/MIPS32_processador/datapath_components/register_file.vhd
+Z5 8D:/TallesArquivos/Projects/MIPS32_processador/constantes.vhd
+Z6 FD:/TallesArquivos/Projects/MIPS32_processador/constantes.vhd
 l0
-L5
-VT_B9Tn8E56PNUzJ3PM[@g2
-!s100 bFjzgkQP=z^z2JI7VhKkG3
+L4
+V1HXXcaOBTXcDm;L;e5I=61
 Z7 OV;C;10.1d;51
 32
-!i10b 1
-Z8 !s108 1655159276.165000
-Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/TallesArquivos/Projects/MIPS32_processador/datapath_components/register_file.vhd|
-Z10 !s107 D:/TallesArquivos/Projects/MIPS32_processador/datapath_components/register_file.vhd|
+b1
+Z8 !s108 1655161184.213000
+Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/TallesArquivos/Projects/MIPS32_processador/constantes.vhd|
+Z10 !s107 D:/TallesArquivos/Projects/MIPS32_processador/constantes.vhd|
 Z11 o-work work -2002 -explicit -O0
 Z12 tExplicit 1
-Artl
+!s100 BR[;PIzMDDUY=ehnEE;W[1
+!i10b 1
+Bbody
+Z13 DPx4 work 10 constantes 0 22 1HXXcaOBTXcDm;L;e5I=61
+Z14 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
 R1
 R2
-R3
-Z13 DEx4 work 13 register_file 0 22 T_B9Tn8E56PNUzJ3PM[@g2
-l26
-L19
-Z14 Vz3=kc0B_3ZPlXz;7];hla0
-Z15 !s100 ae_X=3c[X<6AV5i6iQKf:0
+l0
+L9
+V=4]88Il8e8MJYkDYPhBWd2
 R7
 32
-!i10b 1
 R8
 R9
 R10
 R11
 R12
+nbody
+!s100 gI:4=AV6ZOfUX<k5o:n2F2
+!i10b 1
+Einstruction_memory
+Z15 w1655162840
+R13
+R2
+R1
+R14
+R4
+Z16 8D:/TallesArquivos/Projects/MIPS32_processador/datapath_components/instruction_memory.vhd
+Z17 FD:/TallesArquivos/Projects/MIPS32_processador/datapath_components/instruction_memory.vhd
+l0
+L7
+VEXMa=;TaH>cc`fzl99kjg2
+!s100 ZDU^X_;T]HdG>^BHD:c1<0
+R7
+32
+!i10b 1
+Z18 !s108 1655162861.945000
+Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/TallesArquivos/Projects/MIPS32_processador/datapath_components/instruction_memory.vhd|
+Z20 !s107 D:/TallesArquivos/Projects/MIPS32_processador/datapath_components/instruction_memory.vhd|
+R11
+R12
+Artl
+R13
+R2
+R1
+R14
+Z21 DEx4 work 18 instruction_memory 0 22 EXMa=;TaH>cc`fzl99kjg2
+l22
+L14
+VnUgD7[N;JJ1LBz9^WfAg<3
+!s100 N9_^kb?f8m5g02`Q@YFA32
+R7
+32
+!i10b 1
+R18
+R19
+R20
+R11
+R12
+Eregister_file
+Z22 w1655159168
+R2
+R1
+R14
+R4
+Z23 8D:/TallesArquivos/Projects/MIPS32_processador/datapath_components/register_file.vhd
+Z24 FD:/TallesArquivos/Projects/MIPS32_processador/datapath_components/register_file.vhd
+l0
+L5
+VT_B9Tn8E56PNUzJ3PM[@g2
+R7
+32
+Z25 !s108 1655162259.575000
+Z26 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/TallesArquivos/Projects/MIPS32_processador/datapath_components/register_file.vhd|
+Z27 !s107 D:/TallesArquivos/Projects/MIPS32_processador/datapath_components/register_file.vhd|
+R11
+R12
+!s100 bFjzgkQP=z^z2JI7VhKkG3
+!i10b 1
+Artl
+R2
+R1
+R14
+DEx4 work 13 register_file 0 22 T_B9Tn8E56PNUzJ3PM[@g2
+l26
+L19
+Vz3=kc0B_3ZPlXz;7];hla0
+R7
+32
+R25
+R26
+R27
+R11
+R12
+!s100 ae_X=3c[X<6AV5i6iQKf:0
+!i10b 1
