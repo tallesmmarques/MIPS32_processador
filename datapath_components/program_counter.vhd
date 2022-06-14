@@ -8,7 +8,7 @@ entity program_counter is
 		CLOCK : in	std_logic;
 		RESET : in std_logic;
 		PC_ : in std_logic_vector(7 downto 0);
-		PC : out std_logic_vector(7 downto 0) := x"00";
+		PC : out std_logic_vector(7 downto 0) := x"00"
 	);
 
 end entity;
