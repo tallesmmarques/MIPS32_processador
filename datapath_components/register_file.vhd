@@ -30,12 +30,13 @@ begin
         if(rising_edge(CLK) and WE3 = '1') then
             registers(to_integer(unsigned(A3))) <= WD3;
         end if;
+	 
+	 -- Forcing $0 to be 0 again
+    registers(0) <= x"00000000";
     end process;
     
     -- Register data output
     RD1 <= registers(to_integer(unsigned(A1)));
     RD2 <= registers(to_integer(unsigned(A2)));
     
-    -- Forcing $0 to be 0 again
-    registers(0) <= x"00000000";
 end architecture;
