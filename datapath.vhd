@@ -8,7 +8,9 @@ use ieee.numeric_std.all;
 entity datapath is
   port (
     CLK, WE3
-      : in  std_logic
+      : in  std_logic;
+    ZERO
+      : out std_logic
   );
 end datapath;
 
@@ -38,11 +40,20 @@ architecture rtl of datapath is
       S     : out std_logic_vector
     );
   end component; 
+  component alu is
+    port (
+      A, B  : in  std_logic_vector(31 downto 0);
+      SEL   : in  std_logic_vector(2 downto 0);
+      ZF    : out std_logic;
+      S     : out std_logic_vector(31 downto 0)
+    );
+  end component;
 
-  signal Instr, Result, SrcA, RD2
+  signal Instr, Result, SrcA, SrcB, RD2, ALUResult
     : std_logic_vector(31 downto 0);
   signal PC, PCn
     : std_logic_vector(7 downto 0);
+  signal ALUControl : std_logic_vector(2 downto 0);
 begin
   PCPlus4: somador port map (
     PC, x"04", PCn );
@@ -55,4 +66,9 @@ begin
     Instr(15 downto 11),
     Result, SrcA, RD2
   );
+  SrcB <= RD2;
+  MainALU: alu port map (
+    SrcA, SrcB, ALUControl, ZERO, ALUResult
+  );
+  Result <= ALUResult;
 end architecture;
