@@ -2,15 +2,14 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
--- library work;
--- use work.datapath_components.all;
-
 entity datapath is
   port (
-    CLK, WE3
+    CLK, WE3, RST
       : in  std_logic;
     ZERO
-      : out std_logic
+      : out std_logic;
+    Opcode, Funct : out std_logic_vector(5 downto 0);
+    ALUControl : std_logic_vector(2 downto 0)
   );
 end datapath;
 
@@ -48,15 +47,25 @@ architecture rtl of datapath is
       S     : out std_logic_vector(31 downto 0)
     );
   end component;
+  component program_counter is
+    port(
+      CLOCK : in	std_logic;
+      RESET : in std_logic;
+      PCl : in std_logic_vector(7 downto 0);
+      PC : out std_logic_vector(7 downto 0) := x"00"
+    );
+  end component;
 
   signal Instr, Result, SrcA, SrcB, RD2, ALUResult
     : std_logic_vector(31 downto 0);
-  signal PC, PCn
+  signal PC, PCl
     : std_logic_vector(7 downto 0);
-  signal ALUControl : std_logic_vector(2 downto 0);
 begin
+  ------------------------------------------------------------------------------
+  PCRegister: program_counter port map (
+    CLK, RST, PCl, PC );
   PCPlus4: somador port map (
-    PC, x"04", PCn );
+    PC, x"04", PCl );
   InstructionMemory: instruction_memory port map (
     PC, Instr );
   RegisterFile: register_file port map (
@@ -71,4 +80,7 @@ begin
     SrcA, SrcB, ALUControl, ZERO, ALUResult
   );
   Result <= ALUResult;
+
+  Opcode <= Instr(31 downto 26);
+  Funct <= Instr(5 downto 0);
 end architecture;

@@ -19,9 +19,17 @@ begin
     case Opcode is
       when "000000" =>
         case Funct is
-          when "100000" =>
-            ALUControl <= "010";
+          when "100000" => -- add
+            ALUControl  <= "010";
+            RegWrite    <= '1'; 
+          when "100010" => -- sub 
+            ALUControl  <= "110";
+            RegWrite    <= '1'; 
+          when others => 
+            RegWrite <= '0';
         end case;
+      when others =>
+        RegWrite <= '0';
     end case;
   end process;
 end architecture;
