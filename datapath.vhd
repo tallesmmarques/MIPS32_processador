@@ -6,10 +6,14 @@ entity datapath is
   port (
     CLK, WE3, RST
       : in  std_logic;
+    ALUControl : in std_logic_vector(2 downto 0);
     ZERO
       : out std_logic;
     Opcode, Funct : out std_logic_vector(5 downto 0);
-    ALUControl : std_logic_vector(2 downto 0)
+
+    -- Conexão com memória de instruções
+    Instr_in  : in std_logic_vector(31 downto 0);
+    PC_out    : out std_logic_vector(31 downto 0)
   );
 end datapath;
 
@@ -27,12 +31,12 @@ architecture rtl of datapath is
       RD2 : out std_logic_vector(31 downto 0)
     );
   end component;
-  component instruction_memory is
-    port (
-      Address     : in  std_logic_vector(7 downto 0);
-      ReadData    : out std_logic_vector(31 downto 0)
-    );
-  end component;
+  -- component instruction_memory is
+  --   port (
+  --     Address     : in  std_logic_vector(7 downto 0);
+  --     ReadData    : out std_logic_vector(31 downto 0)
+  --   );
+  -- end component;
   component somador is
     port (
       A, B  : in  std_logic_vector;
@@ -51,23 +55,25 @@ architecture rtl of datapath is
     port(
       CLOCK : in	std_logic;
       RESET : in std_logic;
-      PCl : in std_logic_vector(7 downto 0);
-      PC : out std_logic_vector(7 downto 0) := x"00"
+      PCl : in std_logic_vector(31 downto 0);
+      PC : out std_logic_vector(31 downto 0) := x"00000000"
     );
   end component;
 
   signal Instr, Result, SrcA, SrcB, RD2, ALUResult
     : std_logic_vector(31 downto 0);
   signal PC, PCl
-    : std_logic_vector(7 downto 0);
+    : std_logic_vector(31 downto 0);
 begin
+  PC_out <= PC;
+  Instr <= Instr_in;
   ------------------------------------------------------------------------------
   PCRegister: program_counter port map (
     CLK, RST, PCl, PC );
   PCPlus4: somador port map (
     PC, x"04", PCl );
-  InstructionMemory: instruction_memory port map (
-    PC, Instr );
+  -- InstructionMemory: instruction_memory port map (
+  --   PC, Instr );
   RegisterFile: register_file port map (
     CLK, WE3,
     Instr(25 downto 21),
