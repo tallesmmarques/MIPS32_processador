@@ -4,7 +4,9 @@ use ieee.numeric_std.all;
 
 entity processador is
   port (
-    CLK, RST : in std_logic
+    CLK, RST : in std_logic;
+
+    LEDR 	: out std_logic_vector (9 downto 0)
   );
 end processador;
 
@@ -58,4 +60,8 @@ begin
   Controlador: control port map (
     Opcode, Funct, RegWrite, ALUControl
   );
+
+
+  -- Led
+  LEDR(0) <= '1';
 end architecture;
