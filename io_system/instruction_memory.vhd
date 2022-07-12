@@ -19,15 +19,17 @@ architecture rtl of instruction_memory is
     -- x"02", x"12", x"A0", x"22", -- sub $s4 $s0 $s2
 
     -- Soma dos n primeiros números inteiros
-    x"20", x"08", x"00", x"00",
-    x"20", x"09", x"00", x"0a",
-    x"00", x"00", x"80", x"20",
-    x"00", x"00", x"88", x"20",
-    x"11", x"09", x"00", x"05",
-    x"02", x"08", x"80", x"20",
-    x"02", x"28", x"88", x"22",
-    x"21", x"08", x"00", x"01",
-    x"10", x"00", x"ff", x"fb",
+    x"20", x"08", x"00", x"00",  -- addi $t0, $0, 0
+    x"20", x"09", x"00", x"0a",  -- addi $t1, $0, 10
+    x"00", x"00", x"80", x"20",  -- add  $s0, $0, $0
+    x"00", x"00", x"88", x"20",  -- add  $s1, $0, $0
+    x"11", x"09", x"00", x"05",  -- for: beq $t0, $t1, final
+    x"21", x"08", x"00", x"01",  -- addi $t0, $t0, 1
+    x"02", x"08", x"80", x"20",  -- add  $s0, $s0, $t0
+    x"02", x"28", x"88", x"22",  -- sub  $s1, $s1, $t0
+    x"10", x"00", x"ff", x"fb",  -- beq  $0, $0, for
+                                 -- sw (leds)...
+                                 -- final
 
     others => (others => '0')
   );
