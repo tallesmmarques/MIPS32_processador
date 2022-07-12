@@ -4,7 +4,9 @@ use ieee.numeric_std.all;
 
 entity processador is
   port (
-    CLK, RST : in std_logic
+    KEY : in std_logic_vector(1 downto 0);
+    MAX10_CLK1_50 : in std_logic;
+    HEX0, HEX1, HEX2, HEX3 : out std_logic_vector(7 downto 0)
   );
 end processador;
 
@@ -39,13 +41,23 @@ architecture rtl of processador is
       ReadData    : out std_logic_vector(31 downto 0)
     );
   end component;
-  component data_memory is
+  -- component data_memory is
+  --   port (
+  --     Address     : in  std_logic_vector(7 downto 0);
+  --     WriteData   : in std_logic_vector(31 downto 0);
+  --     WE          : in std_logic;
+  --     CLK         : in std_logic;
+  --     ReadData    : out std_logic_vector(31 downto 0)
+  --   );
+  -- end component;
+  component gerenciador is
     port (
       Address     : in  std_logic_vector(7 downto 0);
       WriteData   : in std_logic_vector(31 downto 0);
       WE          : in std_logic;
       CLK         : in std_logic;
-      ReadData    : out std_logic_vector(31 downto 0)
+      ReadData    : out std_logic_vector(31 downto 0);
+      hex0, hex1, hex2, hex3 : out std_logic_vector(7 downto 0)
     );
   end component;
 
@@ -70,7 +82,11 @@ architecture rtl of processador is
     MemtoReg, MemWrite, Branch, ALUSrc, RegDst, RegWrite
     : std_logic;
   signal ALUControl : std_logic_vector(2 downto 0);
+
+  signal CLK, RST : std_logic;
 begin
+  CLK <= MAX10_CLK1_50;
+  RST <= KEY(0);
   ------------------------------------------------------------------------------
   Caminho_de_Dados: datapath port map (
     CLK, RST,
@@ -83,8 +99,9 @@ begin
   InstructionMemory: instruction_memory port map (
     PC(7 downto 0), Instr 
   );
-  DataMemory: data_memory port map (
-    AddressData(7 downto 0), WriteData, MemWrite, CLK, ReadData
+  GerenciadorMemoria: gerenciador port map (
+    AddressData(7 downto 0), WriteData, MemWrite, CLK, ReadData,
+    HEX0, HEX1, HEX2, HEX3
   );
   Controlador: control port map (
     Opcode, Funct, 

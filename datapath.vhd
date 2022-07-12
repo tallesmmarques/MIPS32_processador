@@ -106,6 +106,7 @@ begin
   );
   SignExtend: sign_extend port map (Instr(15 downto 0), SignImm);
   MuxALUSrc: mux port map (RD2, SignImm, ALUSrc, SrcB);
+  WriteData <= RD2;
   MainALU: alu port map (SrcA, SrcB, ALUControl, ZERO, ALUResult);
   MuxResult: mux port map (ALUResult, ReadData, MemtoReg, Result);
   Shift: shift_left port map (SignImm,Shift_sum);

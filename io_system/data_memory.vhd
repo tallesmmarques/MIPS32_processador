@@ -19,17 +19,15 @@ architecture rtl of data_memory is
     others => (others => '0')
   );
   begin
-    process(Address) is
+    process(Address, RAM) is
     begin
-      -- ReadData(31 downto 24) <= RAM(to_integer(unsigned(Address)) + 0) when isBig='0' else x"00";
-      -- ReadData(23 downto 16) <= RAM(to_integer(unsigned(Address)) + 1) when isBig='0' else x"00";
-      -- ReadData(15 downto 8)  <= RAM(to_integer(unsigned(Address)) + 2) when isBig='0' else x"00";
-      -- ReadData(7  downto 0)  <= RAM(to_integer(unsigned(Address)) + 3) when isBig='0' else x"00";
-      if(to_integer(unsigned(Address)) <= 252) then
+      if(to_integer(unsigned(Address)) < 248) then
         ReadData(31 downto 24) <= RAM(to_integer(unsigned(Address)) + 0);
         ReadData(23 downto 16) <= RAM(to_integer(unsigned(Address)) + 1);
         ReadData(15 downto 8)  <= RAM(to_integer(unsigned(Address)) + 2);
         ReadData(7  downto 0)  <= RAM(to_integer(unsigned(Address)) + 3);
+      else
+        ReadData <= x"00000000";
       end if;
     end process;
 

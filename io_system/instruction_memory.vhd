@@ -28,18 +28,21 @@ architecture rtl of instruction_memory is
     x"02", x"08", x"80", x"20",  -- add  $s0, $s0, $t0
     x"02", x"28", x"88", x"22",  -- sub  $s1, $s1, $t0
     x"10", x"00", x"ff", x"fb",  -- beq  $0, $0, for
-                                 -- sw (leds)...
                                  -- final
+    x"ac", x"10", x"00", x"fc",  -- sw $s0, 0xFC($0)
 
     others => (others => '0')
   );
-
-  signal isBig : std_logic;
 begin
-  isBig <= '1' when to_integer(unsigned(Address)) > 252 else '0';
-
-  ReadData(31 downto 24) <= ROM(to_integer(unsigned(Address)) + 0) when isBig='0' else x"00";
-  ReadData(23 downto 16) <= ROM(to_integer(unsigned(Address)) + 1) when isBig='0' else x"00";
-  ReadData(15 downto 8)  <= ROM(to_integer(unsigned(Address)) + 2) when isBig='0' else x"00";
-  ReadData(7  downto 0)  <= ROM(to_integer(unsigned(Address)) + 3) when isBig='0' else x"00";
+  process(Address, ROM) is
+  begin
+    if(to_integer(unsigned(Address)) <= 252) then
+      ReadData(31 downto 24) <= ROM(to_integer(unsigned(Address)) + 0);
+      ReadData(23 downto 16) <= ROM(to_integer(unsigned(Address)) + 1);
+      ReadData(15 downto 8)  <= ROM(to_integer(unsigned(Address)) + 2);
+      ReadData(7  downto 0)  <= ROM(to_integer(unsigned(Address)) + 3);
+    else 
+      ReadData <= x"00000000";
+    end if;
+  end process;
 end architecture;
