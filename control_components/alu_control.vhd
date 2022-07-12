@@ -19,7 +19,7 @@ begin
         ALUControl <= "010";
       when "01" => -- subtraction
         ALUControl <= "110";
-      when "10" | "11" | others => -- look funct
+      when "10" | "11" => -- look funct
         case Funct is
           when "100000" => -- add
             ALUControl <= "010";
@@ -34,19 +34,8 @@ begin
           when others =>   -- nothing
             ALUControl <= "000";
         end case;
-      -- when "11" => -- nothing (look funct)
-      --   case Funct is
-      --     when "100000" => -- add
-      --       ALUControl <= "010";
-      --     when "100010" => -- sub
-      --       ALUControl <= "110";
-      --     when "101010" => -- slt
-      --       ALUControl <= "111";
-      --     when "100100" => -- and
-      --       ALUControl <= "000";
-      --     when "100101" => -- or
-      --       ALUControl <= "001";
-      --   end case;
+      when others => -- nothing (look funct)
+        ALUControl <= "010";
     end case;
   end process;
 end architecture;

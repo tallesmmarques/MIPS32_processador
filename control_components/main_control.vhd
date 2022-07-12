@@ -40,10 +40,10 @@ begin
         MemtoReg <= '0';
         MemWrite <= '0';
         Branch <= '1';
-        ALUSrc <= '1';
+        ALUSrc <= '0';
         RegDst <= '0';
         RegWrite <= '0';
-        ALUop <= "00";
+        ALUop <= "01";
       when "100011" => -- LW
         MemtoReg <= '1';
         MemWrite <= '0';
