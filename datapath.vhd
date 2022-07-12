@@ -72,7 +72,7 @@ architecture rtl of datapath is
   component sign_extend is
     port (
       in16  :  in std_logic_vector(15 downto 0);
-      out32 : out std_logic_vector(31 downto 0 )
+      out32 : out std_logic_vector(31 downto 0)
     );
   end component;
   component shift_logic is
