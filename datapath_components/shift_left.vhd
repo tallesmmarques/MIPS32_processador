@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 entity shift_left is
     port (
         DATA_IN  : in std_logic_vector(31 downto 0);
-        DATA_OUT : out std_logic_vector(31 downto 0);
+        DATA_OUT : out std_logic_vector(31 downto 0)
     );
 end shift_left;
 

@@ -27,11 +27,11 @@ architecture rtl of data_memory is
 
     process(CLK, WE) is
       begin
-        if(rising_edge(CLK) && WE = '1') then
-          RAM(to_integer(unsigned(Address)) + 0) <= WriteDate(31 downto 24);
-          RAM(to_integer(unsigned(Address)) + 1) <= WriteDate(23 downto 16);
-          RAM(to_integer(unsigned(Address)) + 2) <= WriteDate(15 downto 8);
-          RAM(to_integer(unsigned(Address)) + 3) <= WriteDate(7 downto 0);
+        if(rising_edge(CLK) and WE = '1') then
+          RAM(to_integer(unsigned(Address)) + 0) <= WriteData(31 downto 24);
+          RAM(to_integer(unsigned(Address)) + 1) <= WriteData(23 downto 16);
+          RAM(to_integer(unsigned(Address)) + 2) <= WriteData(15 downto 8);
+          RAM(to_integer(unsigned(Address)) + 3) <= WriteData(7 downto 0);
         end if;
       end process;
 

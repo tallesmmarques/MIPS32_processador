@@ -432,14 +432,20 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[32]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[33]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[34]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to GPIO[35]
+set_global_assignment -name VHDL_FILE control.vhd
+set_global_assignment -name VHDL_FILE io_system/instruction_memory.vhd
+set_global_assignment -name VHDL_FILE io_system/data_memory.vhd
+set_global_assignment -name VHDL_FILE datapath_components/shift_left.vhd
+set_global_assignment -name VHDL_FILE datapath_components/mux.vhd
+set_global_assignment -name VHDL_FILE control_components/main_control.vhd
+set_global_assignment -name VHDL_FILE control_components/alu_control.vhd
 set_global_assignment -name VHDL_FILE datapath_components/sign_extend.vhd
 set_global_assignment -name VHDL_FILE datapath_components/somador.vhd
 set_global_assignment -name VHDL_FILE datapath_components/register_file.vhd
 set_global_assignment -name VHDL_FILE datapath_components/program_counter.vhd
 set_global_assignment -name VHDL_FILE datapath_components/alu.vhd
 set_global_assignment -name VHDL_FILE processador.vhd
-set_global_assignment -name VHDL_FILE instruction_memory.vhd
 set_global_assignment -name VHDL_FILE datapath.vhd
-set_global_assignment -name VHDL_FILE control.vhd
 set_global_assignment -name VERILOG_FILE DE10_LITE_Golden_Top.v
+set_global_assignment -name SOURCE_FILE db/MIPS32_processador.cmp.rdb
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

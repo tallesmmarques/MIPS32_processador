@@ -75,7 +75,7 @@ architecture rtl of datapath is
       out32 : out std_logic_vector(31 downto 0)
     );
   end component;
-  component shift_logic is
+  component shift_left is
     port (
         DATA_IN  : in std_logic_vector(31 downto 0);
         DATA_OUT : out std_logic_vector(31 downto 0)
@@ -87,7 +87,7 @@ architecture rtl of datapath is
     : std_logic_vector(31 downto 0);
   signal WriteReg
     : std_logic_vector(4 downto 0);
-  signal PCSrc
+  signal PCSrc, ZERO
     : std_logic;
 begin
   PC_out <= PC;

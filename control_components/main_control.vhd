@@ -60,6 +60,14 @@ begin
         RegDst <= '0';
         RegWrite <= '0';
         ALUop <= "00";
+      when others =>
+        MemtoReg <= '0';
+        MemWrite <= '0';
+        Branch <= '0';
+        ALUSrc <= '1';
+        RegDst <= '0';
+        RegWrite <= '0';
+        ALUop <= "00";
     end case;
   end process;
 end architecture;

@@ -20,7 +20,6 @@ architecture rtl of register_file is
     -- Defining the array of registers and setting all of them to 0
     type file_type is array (0 to 31) of std_logic_vector(31 downto 0);
     signal registers : file_type := (
-        17 => x"000000a2", 18 => x"00000004", -- $s1=162, $s2=4
         others => (others => '0')
     );
 
