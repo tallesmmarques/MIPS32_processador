@@ -12,7 +12,7 @@ entity control is
         ALUSrc     : out std_logic;
         RegDst     : out std_logic;
         RegWrite   : out std_logic;
-        ALUControl : out std_logic_vector(2 downto 0);
+        ALUControl : out std_logic_vector(2 downto 0)
     );
 end control;
 
