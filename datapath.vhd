@@ -16,7 +16,7 @@ entity datapath is
 
     -- Conexão com memória de instruções
     Instr_in  : in std_logic_vector(31 downto 0);
-    PC_out    : out std_logic_vector(31 downto 0)
+    PC_out    : out std_logic_vector(31 downto 0);
 
     -- Conexão com memória de dados
     ReadData    : in  std_logic_vector(31 downto 0);
