@@ -5,7 +5,8 @@ use ieee.numeric_std.all;
 entity datapath is
   port (
     -- Entrada vindas da controladora
-    CLK, WE3, RST, MemtoReg, MemWrite, Branch, ALUSrc,
+    CLK, RST, 
+    MemtoReg, MemWrite, Branch, ALUSrc,
     RegDst, RegWrite
       : in  std_logic;
     ALUControl : in std_logic_vector(2 downto 0);
@@ -94,7 +95,7 @@ begin
   MuxReg: mux port map (
     Instr(20 downto 16), Instr(15 downto 11), RegDst, WriteReg );
   RegisterFile: register_file port map (
-    CLK, WE3,
+    CLK, RegWrite,
     Instr(25 downto 21),
     Instr(20 downto 16),
     WriteReg,

@@ -13,15 +13,14 @@ architecture rtl of processador is
   component datapath is
     port (
       -- Entrada vindas da controladora
-      CLK, WE3, RST, MemtoReg, MemWrite, Branch, ALUSrc,
+      CLK, RST, 
+      MemtoReg, MemWrite, Branch, ALUSrc,
       RegDst, RegWrite
         : in  std_logic;
       ALUControl : in std_logic_vector(2 downto 0);
 
       -- Saidas para a controladora
       Opcode, Funct : out std_logic_vector(5 downto 0);
-      ZERO
-        : out std_logic;
 
       -- Conexão com memória de instruções
       Instr_in  : in std_logic_vector(31 downto 0);
@@ -64,21 +63,20 @@ architecture rtl of processador is
     );
   end component;
 
-  signal Instr, PC, AddressData, WriteData, WriteEnable, 
-    Result, ReadData
+  signal Instr, PC, AddressData, WriteData, ReadData
     : std_logic_vector(31 downto 0);
   signal Opcode, Funct : std_logic_vector(5 downto 0);
-  signal RegWrite, ZERO, WE3
+  signal 
+    MemtoReg, MemWrite, Branch, ALUSrc, RegDst, RegWrite,
     : std_logic;
   signal ALUControl : std_logic_vector(2 downto 0);
 begin
   ------------------------------------------------------------------------------
   Caminho_de_Dados: datapath port map (
-    CLK, WE3, RST,
+    CLK, RST,
     MemtoReg, MemWrite, Branch, ALUSrc, RegDst, RegWrite,
-    AluControl,
+    ALUControl,
     Opcode, Funct,
-    ZERO,
     Instr, PC
     ReadData, AddressData, WriteData
   );
@@ -86,9 +84,11 @@ begin
     PC(7 downto 0), Instr 
   );
   DataMemory: data_memory port map (
-    AddressData(7 downto 0), WriteData, WriteEnable, CLK, Result
+    AddressData(7 downto 0), WriteData, MemWrite, CLK, ReadData
   );
-  -- Controlador: control port map (
-
-  -- );
+  Controlador: control port map (
+    Opcode, Funct, 
+    MemtoReg, MemWrite, Branch, ALUSrc, RegDst, RegWrite,
+    ALUControl
+  );
 end architecture;
