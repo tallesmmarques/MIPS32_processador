@@ -12,14 +12,12 @@ entity datapath is
 
     -- Saidas para a controladora
     Opcode, Funct : out std_logic_vector(5 downto 0);
-    ZERO
-      : out std_logic;
 
     -- Conexão com memória de instruções
     Instr_in  : in std_logic_vector(31 downto 0);
     PC_out    : out std_logic_vector(31 downto 0)
 
-    -- Memoria de dados
+    -- Conexão com memória de dados
     ReadData    : in  std_logic_vector(31 downto 0);
     AddressData : out std_logic_vector(31 downto 0);
     WriteData   : out std_logic_vector(31 downto 0)
@@ -76,7 +74,12 @@ architecture rtl of datapath is
       out32 : out std_logic_vector(31 downto 0 )
     );
   end component;
-
+  component shif_logic is
+    port (
+        DATA_IN  : in std_logic_vector(31 downto 0);
+        DATA_OUT : out std_logic_vector(31 downto 0);
+    );
+  end component;
   signal Instr, Result, SrcA, SrcB, RD2, ALUResult, SignImm
     : std_logic_vector(31 downto 0);
   signal PC, PCl
@@ -87,12 +90,9 @@ begin
   PC_out <= PC;
   Instr <= Instr_in;
   ------------------------------------------------------------------------------
-  PCRegister: program_counter port map (
-    CLK, RST, PCl, PC );
-  PCPlus4: somador port map (
-    PC, x"04", PCl );
-  MuxReg: mux port map (
-    Instr(20 downto 16), Instr(15 downto 11), RegDst, WriteReg );
+  PCRegister: program_counter port map (CLK, RST, PCl, PC);
+  PCPlus4: somador port map (PC, x"04", PCl);
+  MuxReg: mux port map (Instr(20 downto 16), Instr(15 downto 11), RegDst, WriteReg);
   RegisterFile: register_file port map (
     CLK, WE3,
     Instr(25 downto 21),
@@ -100,14 +100,10 @@ begin
     WriteReg,
     Result, SrcA, RD2
   );
-  SignExtend: sign_extend port map (
-    Instr(15 downto 0), SignImm );
-  MuxALUSrc: mux port map (
-    RD2, SignImm, ALUSrc, SrcB );
-  MainALU: alu port map (
-    SrcA, SrcB, ALUControl, ZERO, ALUResult );
-  MuxResult: mux port map (
-    ALUResult, ReadData, MemtoReg, Result );
+  SignExtend: sign_extend port map (Instr(15 downto 0), SignImm);
+  MuxALUSrc: mux port map (RD2, SignImm, ALUSrc, SrcB);
+  MainALU: alu port map (SrcA, SrcB, ALUControl, ZERO, ALUResult);
+  MuxResult: mux port map (ALUResult, ReadData, MemtoReg, Result);
 
   AddressData <= ALUResult;
   Opcode <= Instr(31 downto 26);
