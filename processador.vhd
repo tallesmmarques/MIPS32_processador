@@ -24,7 +24,7 @@ architecture rtl of processador is
 
       -- Conexão com memória de instruções
       Instr_in  : in std_logic_vector(31 downto 0);
-      PC_out    : out std_logic_vector(31 downto 0)
+      PC_out    : out std_logic_vector(31 downto 0);
 
       -- Memoria de dados
       ReadData    : in  std_logic_vector(31 downto 0);
@@ -67,7 +67,7 @@ architecture rtl of processador is
     : std_logic_vector(31 downto 0);
   signal Opcode, Funct : std_logic_vector(5 downto 0);
   signal 
-    MemtoReg, MemWrite, Branch, ALUSrc, RegDst, RegWrite,
+    MemtoReg, MemWrite, Branch, ALUSrc, RegDst, RegWrite
     : std_logic;
   signal ALUControl : std_logic_vector(2 downto 0);
 begin
@@ -77,7 +77,7 @@ begin
     MemtoReg, MemWrite, Branch, ALUSrc, RegDst, RegWrite,
     ALUControl,
     Opcode, Funct,
-    Instr, PC
+    Instr, PC,
     ReadData, AddressData, WriteData
   );
   InstructionMemory: instruction_memory port map (
